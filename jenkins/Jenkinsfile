@@ -13,8 +13,24 @@ pipeline {
             steps {
                 sh 'rm -rf build'
                 sh 'npm install'
-                sh 'npm run build'
-                sh 'mv build dist'
+            }
+        }
+
+        stage('deliver for dev'){
+            when{
+                branch 'dev'
+            }
+            steps {
+                sh 'echo "dev"'
+            }
+        }
+
+        stage('deliver for master'){
+            when {
+                branch 'master'
+            }
+            steps {
+                sh 'echo "master"'
             }
         }
     }
